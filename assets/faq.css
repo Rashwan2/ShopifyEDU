@@ -73,6 +73,7 @@
   overflow: hidden;
   transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   background-color: rgba(var(--color-foreground), 0.02);
+
   padding: 0 2rem;
 }
 
@@ -111,7 +112,6 @@
     font-size: 2rem;
     margin-bottom: 2rem;
   }
-
   .faq-question {
     padding: 1.2rem 1.5rem;
     font-size: 1.4rem;
