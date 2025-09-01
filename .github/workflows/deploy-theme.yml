@@ -21,8 +21,8 @@ jobs:
         run: |
           shopify theme push \
             --json \
-            --ignore config/settings_data.json templates/*.json sections/*.json \
-            --theme 185309069653 \
-            --store ${{ secrets.SHOPIFY_FLAG_STORE }} \
-            --password ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
+						--ignore config/settings_data.json templates/*.json sections/*.json \
+            --theme your-theme-name-or-id \
+            --store ${{ secrets.SHOPIFY_STORE }} \
+			      --password ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }} \
             --allow-live
