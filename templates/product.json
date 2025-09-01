@@ -54,13 +54,6 @@
           "settings": {
             "share_label": "Share"
           }
-        },
-        "material": {
-          "type": "material",
-          "settings": {
-            "show_label": true,
-            "label": "Material"
-          }
         }
       },
       "block_order": [
@@ -71,7 +64,6 @@
         "quantity_selector",
         "buy_buttons",
         "description",
-        "material",
         "share"
       ],
       "settings": {
@@ -109,5 +101,8 @@
       }
     }
   },
-  "order": ["main", "related-products"]
+  "order": [
+    "main",
+    "related-products"
+  ]
 }
