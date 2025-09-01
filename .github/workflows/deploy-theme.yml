@@ -10,19 +10,25 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - name: Install Shopify CLI 
-        run: npm install -g @shopify/cli 
+      - name: Install Shopify CLI
+        run: npm install -g @shopify/cli@latest
+
+      - name: Verify Shopify CLI
+        run: shopify version
 
       - name: Upload theme
+        env:
+          SHOPIFY_FLAG_STORE: ${{ secrets.SHOPIFY_FLAG_STORE }}
+          SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
         run: |
           shopify theme push --force \
             --json \
-            --theme 185309069653 \
-            --store ${{ secrets.SHOPIFY_FLAG_STORE }} \
-            --password ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
+            --theme 185311560021 \
+            --store $SHOPIFY_FLAG_STORE \
+            --password $SHOPIFY_CLI_THEME_TOKEN \
             --allow-live
