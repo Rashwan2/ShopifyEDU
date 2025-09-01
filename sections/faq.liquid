@@ -61,3 +61,61 @@
 
 {{ 'faq.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'faq.js' | asset_url }}" defer></script>
+
+<script>
+// Fallback JavaScript in case web components don't work
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if web components are supported
+    if (!window.customElements || !window.customElements.get('faq-section')) {
+        console.log('Web components not supported, using fallback');
+        
+        const questions = document.querySelectorAll('.faq-question');
+        console.log('Fallback: Found questions:', questions.length);
+        
+        questions.forEach((question, index) => {
+            console.log(`Fallback: Setting up question ${index + 1}`);
+            
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const icon = this.querySelector('.faq-icon');
+                
+                console.log('Fallback: Toggle clicked');
+                console.log('Answer element:', answer);
+                console.log('Icon element:', icon);
+                
+                if (answer && icon) {
+                    // Close other answers
+                    questions.forEach(otherQuestion => {
+                        if (otherQuestion !== this) {
+                            const otherAnswer = otherQuestion.nextElementSibling;
+                            const otherIcon = otherQuestion.querySelector('.faq-icon');
+                            
+                            if (otherAnswer && otherIcon) {
+                                otherAnswer.classList.remove('active');
+                                otherIcon.textContent = '+';
+                                otherQuestion.setAttribute('aria-expanded', 'false');
+                            }
+                        }
+                    });
+                    
+                    // Toggle current answer
+                    const isActive = answer.classList.contains('active');
+                    answer.classList.toggle('active');
+                    icon.textContent = isActive ? '+' : '−';
+                    this.setAttribute('aria-expanded', !isActive);
+                    
+                    console.log('Fallback: Answer toggled, active:', !isActive);
+                }
+            });
+            
+            // Add keyboard support
+            question.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    this.click();
+                }
+            });
+        });
+    }
+});
+</script>
