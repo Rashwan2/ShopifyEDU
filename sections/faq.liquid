@@ -1,0 +1,121 @@
+{% schema %}
+{
+  "name": "FAQ",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Frequently Asked Questions"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "What is your return policy?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>We accept returns within 30 days of purchase.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
+
+{% comment %} HTML for the FAQ section {% endcomment %}
+<div class="faq-section" is="faq-section">
+  <h2 class="faq-title">{{ section.settings.title }}</h2>
+  
+  <div class="faq-items">
+    {% for block in section.blocks %}
+      <div class="faq-item" {{ block.shopify_attributes }}>
+        <button class="faq-question" aria-expanded="false">
+          <span class="faq-question-text">{{ block.settings.question }}</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            {{ block.settings.answer }}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{{ 'faq.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'faq.js' | asset_url }}" defer></script>
+
+<script>
+// Fallback JavaScript in case web components don't work
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if web components are supported
+    if (!window.customElements || !window.customElements.get('faq-section')) {
+        console.log('Web components not supported, using fallback');
+        
+        const questions = document.querySelectorAll('.faq-question');
+        console.log('Fallback: Found questions:', questions.length);
+        
+        questions.forEach((question, index) => {
+            console.log(`Fallback: Setting up question ${index + 1}`);
+            
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const icon = this.querySelector('.faq-icon');
+                
+                console.log('Fallback: Toggle clicked');
+                console.log('Answer element:', answer);
+                console.log('Icon element:', icon);
+                
+                if (answer && icon) {
+                    // Close other answers
+                    questions.forEach(otherQuestion => {
+                        if (otherQuestion !== this) {
+                            const otherAnswer = otherQuestion.nextElementSibling;
+                            const otherIcon = otherQuestion.querySelector('.faq-icon');
+                            
+                            if (otherAnswer && otherIcon) {
+                                otherAnswer.classList.remove('active');
+                                otherIcon.textContent = '+';
+                                otherQuestion.setAttribute('aria-expanded', 'false');
+                            }
+                        }
+                    });
+                    
+                    // Toggle current answer
+                    const isActive = answer.classList.contains('active');
+                    answer.classList.toggle('active');
+                    icon.textContent = isActive ? '+' : '−';
+                    this.setAttribute('aria-expanded', !isActive);
+                    
+                    console.log('Fallback: Answer toggled, active:', !isActive);
+                }
+            });
+            
+            // Add keyboard support
+            question.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    this.click();
+                }
+            });
+        });
+    }
+});
+</script>
