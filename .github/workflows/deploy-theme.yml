@@ -3,7 +3,6 @@ name: Theme deploy
 on:
   push:
     branches: ["main"] # This is better than `on: [push]`
-
 jobs:
   deploy:
     name: Deploy
@@ -23,5 +22,5 @@ jobs:
             --json \
             --theme 185309069653 \
             --store ${{ secrets.SHOPIFY_FLAG_STORE }} \
-			      --password ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }} \
+            --password ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
             --allow-live
