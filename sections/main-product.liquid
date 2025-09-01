@@ -197,6 +197,15 @@
                     {{ product.description }}
                   </div>
                 {%- endif -%}
+              {%- when 'material' -%}
+                {%- if product.metafields.custom.material.value != blank -%}
+                  <div class="product__material" {{ block.shopify_attributes }}>
+                    {%- if block.settings.show_label -%}
+                      <span class="product__material-label">{{ block.settings.label }}:</span>
+                    {%- endif -%}
+                    <span class="product__material-value">{{ product.metafields.custom.material.value }}</span>
+                  </div>
+                {%- endif -%}
               {%- when 'sku' -%}
                 <p
                   class="product__sku{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.sku.size == 0 %} visibility-hidden{% endif %}"
