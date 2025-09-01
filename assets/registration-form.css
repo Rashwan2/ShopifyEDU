@@ -1,0 +1,365 @@
+/* Registration Form Styles */
+.registration-form-section {
+  padding: 4rem 0;
+  background: linear-gradient(
+    135deg,
+    rgba(var(--color-background), 1) 0%,
+    rgba(var(--color-background), 0.95) 100%
+  );
+}
+
+.registration-form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: rgba(var(--color-background), 1);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(var(--color-foreground), 0.1);
+  border: 1px solid rgba(var(--color-foreground), 0.08);
+}
+
+.registration-title {
+  text-align: center;
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: rgba(var(--color-foreground), 0.9);
+}
+
+.registration-subtitle {
+  text-align: center;
+  font-size: 1.6rem;
+  color: rgba(var(--color-foreground), 0.7);
+  margin-bottom: 3rem;
+}
+
+.registration-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: rgba(var(--color-foreground), 0.8);
+  margin-bottom: 0.5rem;
+}
+
+.form-input {
+  padding: 1.2rem 1.5rem;
+  border: 2px solid rgba(var(--color-foreground), 0.1);
+  border-radius: 8px;
+  font-size: 1.6rem;
+  background: rgba(var(--color-background), 1);
+  color: rgba(var(--color-foreground), 0.9);
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: rgba(var(--color-button), 0.8);
+  box-shadow: 0 0 0 3px rgba(var(--color-button), 0.1);
+}
+
+.form-input.error {
+  border-color: rgba(var(--color-error), 0.8);
+  background: rgba(var(--color-error), 0.02);
+}
+
+.form-input:disabled {
+  background: rgba(var(--color-foreground), 0.05);
+  color: rgba(var(--color-foreground), 0.5);
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: rgba(var(--color-error), 0.9);
+  font-size: 1.3rem;
+  display: none;
+  margin-top: 0.5rem;
+}
+
+/* Password Requirements */
+.password-requirements {
+  margin-top: 1rem;
+  padding: 1.5rem;
+  background: rgba(var(--color-foreground), 0.02);
+  border-radius: 8px;
+  border: 1px solid rgba(var(--color-foreground), 0.08);
+}
+
+.requirements-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: rgba(var(--color-foreground), 0.7);
+  margin-bottom: 1rem;
+}
+
+.requirements-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.requirement {
+  font-size: 1.2rem;
+  color: rgba(var(--color-foreground), 0.6);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.requirement::before {
+  content: "○";
+  color: rgba(var(--color-foreground), 0.4);
+  font-size: 1.4rem;
+}
+
+.requirement.met::before {
+  content: "●";
+  color: rgba(var(--color-success), 0.8);
+}
+
+.requirement.met {
+  color: rgba(var(--color-foreground), 0.8);
+}
+
+/* Checkbox Styling */
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  font-size: 1.4rem;
+  color: rgba(var(--color-foreground), 0.8);
+  cursor: pointer;
+  line-height: 1.5;
+}
+
+.checkbox-label input[type="checkbox"] {
+  display: none;
+}
+
+.checkmark {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(var(--color-foreground), 0.2);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkmark {
+  background: rgba(var(--color-button), 1);
+  border-color: rgba(var(--color-button), 1);
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkmark::after {
+  content: "✓";
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.checkbox-label a {
+  color: rgba(var(--color-button), 0.9);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.checkbox-label a:hover {
+  border-bottom-color: rgba(var(--color-button), 0.9);
+}
+
+/* Submit Button */
+.form-actions {
+  margin-top: 1rem;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 1.5rem 2rem;
+  background: rgba(var(--color-button), 1);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.6rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.submit-button:hover:not(:disabled) {
+  background: rgba(var(--color-button), 0.9);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(var(--color-button), 0.3);
+}
+
+.submit-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.submit-button:disabled {
+  background: rgba(var(--color-foreground), 0.3);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.submit-button.loading {
+  background: rgba(var(--color-button), 0.8);
+}
+
+.loading-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Messages */
+.message {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 2rem;
+  border-radius: 8px;
+  margin-top: 2rem;
+}
+
+.success-message {
+  background: rgba(var(--color-success), 0.1);
+  border: 1px solid rgba(var(--color-success), 0.2);
+  color: rgba(var(--color-success), 0.9);
+}
+
+.error-message {
+  background: rgba(var(--color-error), 0.1);
+  border: 1px solid rgba(var(--color-error), 0.2);
+  color: rgba(var(--color-error), 0.9);
+}
+
+.message-icon {
+  font-size: 2.4rem;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.message-content h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.message-content p {
+  margin: 0;
+  font-size: 1.4rem;
+  line-height: 1.5;
+}
+
+/* RTL Support */
+[dir="rtl"] .form-row {
+  direction: rtl;
+}
+
+[dir="rtl"] .form-input {
+  text-align: right;
+}
+
+[dir="rtl"] .checkbox-label {
+  direction: rtl;
+}
+
+[dir="rtl"] .requirement::before {
+  margin-left: 0.5rem;
+  margin-right: 0;
+}
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 749px) {
+  .registration-form-section {
+    padding: 2rem 0;
+  }
+
+  .registration-form-container {
+    margin: 0 1rem;
+    padding: 1.5rem;
+  }
+
+  .registration-title {
+    font-size: 2.4rem;
+  }
+
+  .registration-subtitle {
+    font-size: 1.4rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .form-input {
+    padding: 1rem 1.2rem;
+    font-size: 1.6rem;
+  }
+
+  .submit-button {
+    padding: 1.2rem 1.5rem;
+    font-size: 1.6rem;
+  }
+
+  .message {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+}
+
+/* Focus States for Accessibility */
+.form-input:focus-visible {
+  outline: 2px solid rgba(var(--color-button), 0.8);
+  outline-offset: 2px;
+}
+
+.submit-button:focus-visible {
+  outline: 2px solid rgba(var(--color-button), 0.8);
+  outline-offset: 2px;
+}
+
+.checkbox-label:focus-visible .checkmark {
+  outline: 2px solid rgba(var(--color-button), 0.8);
+  outline-offset: 2px;
+}

@@ -1,0 +1,115 @@
+# GraphQL Schema for User Registration
+# Import this into Insomnia for testing
+
+type User {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  email: String!
+  createdAt: String!
+  updatedAt: String!
+}
+
+type RegistrationResponse {
+  success: Boolean!
+  message: String!
+  user: User
+  errors: [RegistrationError]
+}
+
+type RegistrationError {
+  field: String!
+  message: String!
+}
+
+type Query {
+  # Get user by ID (for testing)
+  user(id: ID!): User
+
+  # Check if email exists
+  checkEmail(email: String!): Boolean!
+}
+
+type Mutation {
+  # User registration
+  registerUser(input: RegisterUserInput!): RegistrationResponse!
+
+  # Update user profile
+  updateUser(id: ID!, input: UpdateUserInput!): User!
+
+  # Delete user account
+  deleteUser(id: ID!): Boolean!
+}
+
+input RegisterUserInput {
+  firstName: String!
+  lastName: String!
+  email: String!
+  password: String!
+  termsAccepted: Boolean!
+}
+
+input UpdateUserInput {
+  firstName: String
+  lastName: String
+  email: String
+}
+
+# Custom scalar types
+scalar DateTime
+scalar Email
+scalar Password
+
+# Directives
+directive @auth(requires: Role!) on FIELD_DEFINITION
+directive @rateLimit(limit: Int!, window: String!) on FIELD_DEFINITION
+
+enum Role {
+  USER
+  ADMIN
+  MODERATOR
+}
+
+# Example queries for Insomnia testing:
+
+# 1. Registration Query:
+# mutation RegisterUser {
+#   registerUser(input: {
+#     firstName: "John"
+#     lastName: "Doe"
+#     email: "john.doe@example.com"
+#     password: "SecurePass123!"
+#     termsAccepted: true
+#   }) {
+#     success
+#     message
+#     user {
+#       id
+#       firstName
+#       lastName
+#       email
+#       createdAt
+#     }
+#     errors {
+#       field
+#       message
+#     }
+#   }
+# }
+
+# 2. Check Email Query:
+# query CheckEmail {
+#   checkEmail(email: "john.doe@example.com")
+# }
+
+# 3. Get User Query:
+# query GetUser {
+#   user(id: "user_id_here") {
+#     id
+#     firstName
+#     lastName
+#     email
+#     createdAt
+#     updatedAt
+#   }
+# }
