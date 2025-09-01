@@ -1,6 +1,8 @@
 name: Theme deploy
 
-on: [push]
+on:
+  push:
+    branches: [ "main" ] # This is better than `on: [push]`
 
 jobs:
   deploy:
@@ -20,5 +22,5 @@ jobs:
           shopify theme push \
             --json \
             --theme sw-edu-rashwan-mohamed \
-            --store ${ secrets.SHOPIFY_FLAG_STORE } \
-            --password ${ secrets.SHOPIFY_CLI_THEME_TOKEN }
+            --store ${ {secrets.SHOPIFY_FLAG_STORE} } \
+            --password ${ {secrets.SHOPIFY_CLI_THEME_TOKEN} }
