@@ -86,10 +86,18 @@
             "question": "What is your return policy?",
             "answer": "<p>We accept returns within 30 days of purchase.</p>"
           }
+        },
+        "question_P3GUyp": {
+          "type": "question",
+          "settings": {
+            "question": "Is it possible that this story had happened before",
+            "answer": "<p>A similar event did take place</p>"
+          }
         }
       },
       "block_order": [
-        "question_6rXDDm"
+        "question_6rXDDm",
+        "question_P3GUyp"
       ],
       "name": "FAQ",
       "settings": {
