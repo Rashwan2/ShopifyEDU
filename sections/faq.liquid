@@ -39,7 +39,7 @@
 {% endschema %}
 
 {% comment %} HTML for the FAQ section {% endcomment %}
-<div class="faq-section" is="faq-section">
+<div class="faq-section">
   <h2 class="faq-title">{{ section.settings.title }}</h2>
   
   <div class="faq-items">
@@ -60,63 +60,87 @@
 </div>
 
 {{ 'faq.css' | asset_url | stylesheet_tag }}
-<script src="{{ 'faq.js' | asset_url }}" defer></script>
 
 <script>
-// Fallback JavaScript in case web components don't work
+// Simple, reliable FAQ functionality
+console.log('FAQ script tag found!');
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Check if web components are supported
-    if (!window.customElements || !window.customElements.get('faq-section')) {
-        console.log('Web components not supported, using fallback');
-        
-        const questions = document.querySelectorAll('.faq-question');
-        console.log('Fallback: Found questions:', questions.length);
-        
-        questions.forEach((question, index) => {
-            console.log(`Fallback: Setting up question ${index + 1}`);
-            
-            question.addEventListener('click', function() {
-                const answer = this.nextElementSibling;
-                const icon = this.querySelector('.faq-icon');
-                
-                console.log('Fallback: Toggle clicked');
-                console.log('Answer element:', answer);
-                console.log('Icon element:', icon);
-                
-                if (answer && icon) {
-                    // Close other answers
-                    questions.forEach(otherQuestion => {
-                        if (otherQuestion !== this) {
-                            const otherAnswer = otherQuestion.nextElementSibling;
-                            const otherIcon = otherQuestion.querySelector('.faq-icon');
-                            
-                            if (otherAnswer && otherIcon) {
-                                otherAnswer.classList.remove('active');
-                                otherIcon.textContent = '+';
-                                otherQuestion.setAttribute('aria-expanded', 'false');
-                            }
-                        }
-                    });
-                    
-                    // Toggle current answer
-                    const isActive = answer.classList.contains('active');
-                    answer.classList.toggle('active');
-                    icon.textContent = isActive ? '+' : '−';
-                    this.setAttribute('aria-expanded', !isActive);
-                    
-                    console.log('Fallback: Answer toggled, active:', !isActive);
-                }
-            });
-            
-            // Add keyboard support
-            question.addEventListener('keydown', function(event) {
-                if (event.key === 'Enter' || event.key === ' ') {
-                    event.preventDefault();
-                    this.click();
-                }
-            });
-        });
+    console.log('FAQ script loaded');
+    
+    // Find all FAQ questions
+    const questions = document.querySelectorAll('.faq-question');
+    console.log('Found FAQ questions:', questions.length);
+    
+    if (questions.length === 0) {
+        console.error('No FAQ questions found! Check your HTML structure.');
+        return;
     }
+    
+    // Set up click handlers for each question
+    questions.forEach(function(question, index) {
+        console.log(`Setting up question ${index + 1}:`, question.textContent.trim());
+        
+        question.addEventListener('click', function() {
+            console.log('Question clicked:', this.textContent.trim());
+            
+            // Find the answer element (next sibling)
+            const answer = this.nextElementSibling;
+            const icon = this.querySelector('.faq-icon');
+            
+            console.log('Answer element:', answer);
+            console.log('Icon element:', icon);
+            
+            if (!answer || !icon) {
+                console.error('Missing answer or icon element');
+                return;
+            }
+            
+            // Close all other answers first
+            questions.forEach(function(otherQuestion) {
+                if (otherQuestion !== question) {
+                    const otherAnswer = otherQuestion.nextElementSibling;
+                    const otherIcon = otherQuestion.querySelector('.faq-icon');
+                    
+                    if (otherAnswer && otherIcon) {
+                        otherAnswer.classList.remove('active');
+                        otherIcon.textContent = '+';
+                        otherQuestion.setAttribute('aria-expanded', 'false');
+                    }
+                }
+            });
+            
+            // Toggle current answer
+            const isCurrentlyActive = answer.classList.contains('active');
+            
+            if (isCurrentlyActive) {
+                // Close this answer
+                answer.classList.remove('active');
+                icon.textContent = '+';
+                this.setAttribute('aria-expanded', 'false');
+                console.log('Answer closed');
+            } else {
+                // Open this answer
+                answer.classList.add('active');
+                icon.textContent = '−';
+                this.setAttribute('aria-expanded', 'true');
+                console.log('Answer opened');
+            }
+        });
+        
+        // Add keyboard support
+        question.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                this.click();
+            }
+        });
+        
+        // Visual feedback that it's clickable
+        question.style.cursor = 'pointer';
+    });
+    
+    console.log('FAQ setup complete');
 });
 </script>
 
