@@ -21,6 +21,6 @@ jobs:
         run: |
           shopify theme push \
             --json \
-            --theme sw-edu-rashwan-mohamed \
+            --theme 185309069653 \
             --store ${{ secrets.SHOPIFY_FLAG_STORE }} \
             --password ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
