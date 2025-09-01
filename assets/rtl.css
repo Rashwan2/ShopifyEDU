@@ -1,0 +1,189 @@
+/* RTL Support for Arabic Language */
+[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+/* Header RTL Adjustments */
+[dir="rtl"] .header {
+  text-align: right;
+}
+
+[dir="rtl"] .header__icons {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .header__icon {
+  margin-left: 0;
+  margin-right: 1rem;
+}
+
+[dir="rtl"] .header__icon:first-child {
+  margin-right: 0;
+}
+
+[dir="rtl"] .header__heading-link {
+  text-align: right;
+}
+
+/* Navigation Menu RTL */
+[dir="rtl"] .list-menu--inline {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .list-menu__item {
+  margin-left: 0;
+  margin-right: 2rem;
+}
+
+[dir="rtl"] .list-menu__item:first-child {
+  margin-right: 0;
+}
+
+[dir="rtl"] summary.list-menu__item {
+  padding-right: 0;
+  padding-left: 2.7rem;
+}
+
+/* Search Form RTL */
+[dir="rtl"] .search__input {
+  text-align: right;
+  padding-right: 1.5rem;
+  padding-left: 4rem;
+}
+
+[dir="rtl"] .search__button {
+  right: auto;
+  left: 0;
+}
+
+/* Drawer Menu RTL */
+[dir="rtl"] .menu-drawer {
+  right: 0;
+  left: auto;
+  transform: translateX(100%);
+}
+
+[dir="rtl"] .menu-drawer.active {
+  transform: translateX(0);
+}
+
+[dir="rtl"] .menu-drawer__navigation {
+  text-align: right;
+}
+
+[dir="rtl"] .menu-drawer__utility-links {
+  flex-direction: row-reverse;
+}
+
+/* Localization Forms RTL */
+[dir="rtl"] .localization-form {
+  text-align: right;
+}
+
+[dir="rtl"] .localization-form__select {
+  padding-right: 2.5rem;
+  padding-left: 1rem;
+}
+
+[dir="rtl"] .localization-form__select-icon {
+  right: auto;
+  left: 0.8rem;
+}
+
+/* Cart Icon RTL */
+[dir="rtl"] .cart-count-bubble {
+  right: auto;
+  left: -0.5rem;
+}
+
+/* Mobile Header RTL */
+@media screen and (max-width: 749px) {
+  [dir="rtl"] header-drawer {
+    margin-left: 0;
+    margin-right: -1.2rem;
+  }
+  
+  [dir="rtl"] .header__icon--menu {
+    margin-right: 0;
+    margin-left: -1.2rem;
+  }
+}
+
+/* Mega Menu RTL */
+[dir="rtl"] .mega-menu__content {
+  text-align: right;
+}
+
+[dir="rtl"] .mega-menu__list {
+  padding-left: 0;
+  padding-right: 2rem;
+}
+
+/* Dropdown Menu RTL */
+[dir="rtl"] .header__submenu {
+  right: auto;
+  left: 0;
+}
+
+[dir="rtl"] .header__submenu .header__submenu {
+  right: 100%;
+  left: auto;
+}
+
+/* Announcement Bar RTL */
+[dir="rtl"] .announcement-bar__message {
+  text-align: center;
+}
+
+/* Utility Bar RTL */
+[dir="rtl"] .utility-bar__grid {
+  padding-left: 0;
+  padding-right: 3rem;
+}
+
+/* Page Width RTL Adjustments */
+[dir="rtl"] .page-width {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* Focus States RTL */
+[dir="rtl"] .focus-inset:focus {
+  outline-offset: -0.2rem;
+}
+
+/* Button RTL */
+[dir="rtl"] .button {
+  text-align: center;
+}
+
+/* Icon RTL Adjustments */
+[dir="rtl"] .icon {
+  transform: scaleX(-1);
+}
+
+/* Specific Icon Adjustments */
+[dir="rtl"] .icon-chevron-left {
+  transform: scaleX(-1) rotate(180deg);
+}
+
+[dir="rtl"] .icon-chevron-right {
+  transform: scaleX(-1) rotate(180deg);
+}
+
+/* Animation RTL */
+[dir="rtl"] .motion-reduce {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+/* Print Styles RTL */
+@media print {
+  [dir="rtl"] .header,
+  [dir="rtl"] .footer {
+    text-align: right;
+  }
+}
+

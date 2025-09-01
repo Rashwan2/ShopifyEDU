@@ -1,0 +1,72 @@
+{
+  "general": {
+    "404": {
+      "title": "الصفحة غير موجودة",
+      "subtext_html": "عذراً، الصفحة التي تبحث عنها غير موجودة.",
+      "link": "العودة إلى الصفحة الرئيسية"
+    },
+    "breadcrumbs": {
+      "home": "الرئيسية"
+    },
+    "search": {
+      "no_results": "لم يتم العثور على نتائج لـ \"{{ terms }}\"",
+      "results_for": "نتائج البحث لـ \"{{ terms }}\"",
+      "title": "البحث",
+      "placeholder": "البحث في المتجر...",
+      "submit": "بحث"
+    },
+    "social": {
+      "share_on_facebook": "مشاركة على فيسبوك",
+      "share_on_twitter": "مشاركة على تويتر",
+      "share_on_pinterest": "مشاركة على بينتيريست",
+      "alt_text": {
+        "share_on_facebook": "مشاركة على فيسبوك",
+        "share_on_twitter": "مشاركة على تويتر",
+        "share_on_pinterest": "مشاركة على بينتيريست"
+      }
+    },
+    "pagination": {
+      "previous": "السابق",
+      "next": "التالي",
+      "current_page": "الصفحة {{ current }} من {{ total }}"
+    }
+  },
+  "sections": {
+    "header": {
+      "announcement": "مرحباً بكم في متجرنا",
+      "menu": "القائمة",
+      "search": "البحث",
+      "cart": "سلة التسوق",
+      "account": "الحساب"
+    },
+    "footer": {
+      "social_media": "وسائل التواصل الاجتماعي",
+      "newsletter": "النشرة الإخبارية",
+      "newsletter_placeholder": "البريد الإلكتروني",
+      "newsletter_submit": "اشتراك"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "إضافة إلى السلة",
+      "sold_out": "نفذت الكمية",
+      "unavailable": "غير متوفر",
+      "on_sale": "خصم",
+      "quantity": "الكمية",
+      "vendor": "البائع",
+      "sku": "رمز المنتج",
+      "tags": "العلامات"
+    }
+  },
+  "cart": {
+    "title": "سلة التسوق",
+    "empty": "سلة التسوق فارغة",
+    "subtotal": "المجموع الفرعي",
+    "shipping": "الشحن",
+    "tax": "الضريبة",
+    "total": "المجموع",
+    "checkout": "إتمام الطلب",
+    "continue_shopping": "مواصلة التسوق"
+  }
+}
+
