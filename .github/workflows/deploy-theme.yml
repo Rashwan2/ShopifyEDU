@@ -15,12 +15,12 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install Shopify CLI
-        run: npm install -g @shopify/cli
+      - name: Install Shopify CLI 
+        run: npm install -g @shopify/cli 
 
       - name: Upload theme
         run: |
-          shopify theme push \
+          shopify theme push --force \
             --json \
             --theme 185309069653 \
             --store ${{ secrets.SHOPIFY_FLAG_STORE }} \
