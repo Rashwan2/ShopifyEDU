@@ -11,6 +11,64 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
+    "hero_banner_yUVTMT": {
+      "type": "hero-banner",
+      "blocks": {
+        "text_xHjUMG": {
+          "type": "text",
+          "settings": {
+            "text": "FALL / WINTER 2021",
+            "heading_tag": "h3",
+            "text_style": "small"
+          }
+        },
+        "text_YWxdg3": {
+          "type": "text",
+          "settings": {
+            "text": "Our new collection is an ode to purity, fluidity and nature. We are inspired by the mountains, by the warmth of the earth and soft lines drawn by the wind in the sky.",
+            "heading_tag": "h2",
+            "text_style": "large"
+          }
+        },
+        "cta_wGxdV4": {
+          "type": "cta",
+          "settings": {
+            "button_text": "SHOP MEN",
+            "button_url": "shopify://collections/mens-t-shirts",
+            "button_style": "primary"
+          }
+        },
+        "cta_GEyGbX": {
+          "type": "cta",
+          "settings": {
+            "button_text": "SHOP WOMEN",
+            "button_url": "shopify://collections/all",
+            "button_style": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "text_xHjUMG",
+        "text_YWxdg3",
+        "cta_wGxdV4",
+        "cta_GEyGbX"
+      ],
+      "name": "Hero Banner",
+      "settings": {
+        "media_type": "image",
+        "video_url": "",
+        "show_overlay": false,
+        "overlay_opacity": 50,
+        "content_alignment": "center",
+        "show_content_box": true,
+        "box_color": "#000000",
+        "box_opacity": 80,
+        "text_color": "#ffffff",
+        "text_drop_shadow": false,
+        "cta_border_color": "#ffffff",
+        "cta_text_color": "#ffffff"
+      }
+    },
     "footer": {
       "type": "footer",
       "settings": {
@@ -30,6 +88,7 @@
     }
   },
   "order": [
+    "hero_banner_yUVTMT",
     "footer"
   ]
 }
