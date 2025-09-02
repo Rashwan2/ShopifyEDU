@@ -103,11 +103,21 @@
       "settings": {
         "title": "Frequently Asked Questions"
       }
+    },
+    "registration_form_Q8mHbn": {
+      "type": "registration-form",
+      "name": "Registration Form",
+      "settings": {
+        "title": "Create Account",
+        "subtitle": "Join our community today",
+        "show_password_requirements": true
+      }
     }
   },
   "order": [
     "image_banner",
     "featured_collection",
-    "faq_yTniWA"
+    "faq_yTniWA",
+    "registration_form_Q8mHbn"
   ]
 }
