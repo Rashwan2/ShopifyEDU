@@ -1,0 +1,108 @@
+{{ 'care-guide.css' | asset_url | stylesheet_tag }}
+
+{%- if product.metafields.custom.care_guide.value != blank -%}
+  <div class="care-guide" data-section-id="{{ section.id }}" data-section-type="care-guide">
+    <div class="care-guide__container">
+      {%- assign care_guide = product.metafields.custom.care_guide.value -%}
+      
+      <div class="care-guide__header">
+        <h3 class="care-guide__title">{{ section.settings.title | default: 'Care Guide' }}</h3>
+        {%- if care_guide.title != blank -%}
+          <h4 class="care-guide__product-title">{{ care_guide.title }}</h4>
+        {%- endif -%}
+      </div>
+      
+      <div class="care-guide__content">
+        {%- if care_guide.description != blank -%}
+          <div class="care-guide__description">
+            <h5>Description</h5>
+            <p>{{ care_guide.description }}</p>
+          </div>
+        {%- endif -%}
+        
+        {%- if care_guide.washing_instructions != blank -%}
+          <div class="care-guide__washing">
+            <h5>Washing Instructions</h5>
+            <p>{{ care_guide.washing_instructions }}</p>
+          </div>
+        {%- endif -%}
+        
+        {%- if care_guide.drying_instructions != blank -%}
+          <div class="care-guide__drying">
+            <h5>Drying Instructions</h5>
+            <p>{{ care_guide.drying_instructions }}</p>
+          </div>
+        {%- endif -%}
+        
+        {%- if care_guide.ironing_instructions != blank -%}
+          <div class="care-guide__ironing">
+            <h5>Ironing Instructions</h5>
+            <p>{{ care_guide.ironing_instructions }}</p>
+          </div>
+        {%- endif -%}
+        
+        {%- if care_guide.special_notes != blank -%}
+          <div class="care-guide__notes">
+            <h5>Special Notes</h5>
+            <p>{{ care_guide.special_notes }}</p>
+          </div>
+        {%- endif -%}
+        
+        {%- if care_guide.material_composition != blank -%}
+          <div class="care-guide__material">
+            <h5>Material Composition</h5>
+            <p>{{ care_guide.material_composition }}</p>
+          </div>
+        {%- endif -%}
+      </div>
+      
+      {%- if care_guide.care_symbols != blank -%}
+        <div class="care-guide__symbols">
+          <h5>Care Symbols</h5>
+          <div class="care-guide__symbols-grid">
+            {%- for symbol in care_guide.care_symbols.value -%}
+              <div class="care-guide__symbol">
+                {%- if symbol.image != blank -%}
+                  <img src="{{ symbol.image | image_url: width: 50 }}" 
+                       alt="{{ symbol.alt_text | default: 'Care symbol' }}"
+                       width="50"
+                       height="50">
+                {%- endif -%}
+                {%- if symbol.description != blank -%}
+                  <span class="care-guide__symbol-text">{{ symbol.description }}</span>
+                {%- endif -%}
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Care Guide",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Care Guide"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_on_product",
+      "label": "Show on product pages",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Care Guide"
+    }
+  ]
+}
+{% endschema %}

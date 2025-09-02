@@ -1,0 +1,200 @@
+/* Care Guide Styles */
+.care-guide {
+  margin: 3rem 0;
+  padding: 2rem 0;
+  border-top: 1px solid rgba(var(--color-foreground), 0.1);
+}
+
+.care-guide__container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.care-guide__header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.care-guide__title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: rgba(var(--color-foreground), 0.9);
+  margin: 0 0 0.5rem 0;
+}
+
+.care-guide__product-title {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: rgba(var(--color-foreground), 0.7);
+  margin: 0;
+  font-style: italic;
+}
+
+.care-guide__content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.care-guide__description,
+.care-guide__washing,
+.care-guide__drying,
+.care-guide__ironing,
+.care-guide__notes,
+.care-guide__material {
+  background: rgba(var(--color-foreground), 0.03);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid rgba(var(--color-foreground), 0.1);
+}
+
+.care-guide__description h5,
+.care-guide__washing h5,
+.care-guide__drying h5,
+.care-guide__ironing h5,
+.care-guide__notes h5,
+.care-guide__material h5 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: rgba(var(--color-foreground), 0.8);
+  margin: 0 0 1rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.care-guide__description p,
+.care-guide__washing p,
+.care-guide__drying p,
+.care-guide__ironing p,
+.care-guide__notes p,
+.care-guide__material p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(var(--color-foreground), 0.7);
+  margin: 0;
+}
+
+/* Care Symbols */
+.care-guide__symbols {
+  background: rgba(var(--color-foreground), 0.03);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid rgba(var(--color-foreground), 0.1);
+}
+
+.care-guide__symbols h5 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: rgba(var(--color-foreground), 0.8);
+  margin: 0 0 1rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.care-guide__symbols-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+}
+
+.care-guide__symbol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
+  background: rgba(var(--color-foreground), 0.05);
+  border-radius: 6px;
+}
+
+.care-guide__symbol img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+  filter: grayscale(0.3);
+}
+
+.care-guide__symbol-text {
+  font-size: 0.85rem;
+  color: rgba(var(--color-foreground), 0.6);
+  line-height: 1.3;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .care-guide {
+    margin: 2rem 0;
+    padding: 1rem 0;
+  }
+
+  .care-guide__container {
+    padding: 0 0.5rem;
+  }
+
+  .care-guide__title {
+    font-size: 1.5rem;
+  }
+
+  .care-guide__content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .care-guide__description,
+  .care-guide__washing,
+  .care-guide__drying,
+  .care-guide__ironing,
+  .care-guide__notes,
+  .care-guide__material,
+  .care-guide__symbols {
+    padding: 1rem;
+  }
+
+  .care-guide__symbols-grid {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 0.5rem;
+  }
+
+  .care-guide__symbol {
+    padding: 0.8rem;
+  }
+
+  .care-guide__symbol img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* RTL Support */
+[dir="rtl"] .care-guide__description,
+[dir="rtl"] .care-guide__washing,
+[dir="rtl"] .care-guide__drying,
+[dir="rtl"] .care-guide__ironing,
+[dir="rtl"] .care-guide__notes,
+[dir="rtl"] .care-guide__material,
+[dir="rtl"] .care-guide__symbols {
+  border-left: none;
+  border-right: 4px solid rgba(var(--color-foreground), 0.1);
+}
+
+/* Print Styles */
+@media print {
+  .care-guide {
+    break-inside: avoid;
+    border-top: 2px solid #000;
+  }
+
+  .care-guide__description,
+  .care-guide__washing,
+  .care-guide__drying,
+  .care-guide__ironing,
+  .care-guide__notes,
+  .care-guide__material,
+  .care-guide__symbols {
+    background: transparent;
+    border: 1px solid #000;
+  }
+}

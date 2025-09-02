@@ -1,0 +1,179 @@
+{{ 'category-swatches.css' | asset_url | stylesheet_tag }}
+
+{%- if collection != blank -%}
+  <div class="category-swatches" data-section-id="{{ section.id }}" data-section-type="category-swatches">
+    <div class="category-swatches__container">
+      <h3 class="category-swatches__title">{{ section.settings.title | default: 'Available Colors' }}</h3>
+      
+      <div class="category-swatches__grid">
+        {%- assign unique_colors = '' -%}
+        {%- for product in collection.products -%}
+          {%- assign product_color = product.metafields.custom.color.value -%}
+          {%- if product_color != blank -%}
+            {%- unless unique_colors contains product_color -%}
+              {%- assign unique_colors = unique_colors | append: product_color | append: ',' -%}
+            {%- endunless -%}
+          {%- endif -%}
+        {%- endfor -%}
+        
+        {%- assign color_array = unique_colors | split: ',' -%}
+        {%- for color in color_array -%}
+          {%- if color != blank -%}
+            {%- assign color_products = '' -%}
+            {%- for product in collection.products -%}
+              {%- if product.metafields.custom.color.value == color -%}
+                {%- assign color_products = color_products | append: product.handle | append: ',' -%}
+              {%- endif -%}
+            {%- endfor -%}
+            {%- assign product_handles = color_products | split: ',' -%}
+            
+            <div class="category-swatches__item" data-color="{{ color | handleize }}">
+              <div class="category-swatches__swatch">
+                {%- assign color_value = color | downcase -%}
+                {%- case color_value -%}
+                  {%- when 'red' -%}
+                    <div class="swatch-color" style="background-color: #ff0000;"></div>
+                  {%- when 'blue' -%}
+                    <div class="swatch-color" style="background-color: #0000ff;"></div>
+                  {%- when 'green' -%}
+                    <div class="swatch-color" style="background-color: #008000;"></div>
+                  {%- when 'black' -%}
+                    <div class="swatch-color" style="background-color: #000000;"></div>
+                  {%- when 'white' -%}
+                    <div class="swatch-color" style="background-color: #ffffff; border: 1px solid #ccc;"></div>
+                  {%- when 'gray' or 'grey' -%}
+                    <div class="swatch-color" style="background-color: #808080;"></div>
+                  {%- when 'yellow' -%}
+                    <div class="swatch-color" style="background-color: #ffff00;"></div>
+                  {%- when 'purple' -%}
+                    <div class="swatch-color" style="background-color: #800080;"></div>
+                  {%- when 'orange' -%}
+                    <div class="swatch-color" style="background-color: #ffa500;"></div>
+                  {%- when 'pink' -%}
+                    <div class="swatch-color" style="background-color: #ffc0cb;"></div>
+                  {%- when 'brown' -%}
+                    <div class="swatch-color" style="background-color: #a52a2a;"></div>
+                  {%- when 'navy' -%}
+                    <div class="swatch-color" style="background-color: #000080;"></div>
+                  {%- when 'beige' -%}
+                    <div class="swatch-color" style="background-color: #f5f5dc;"></div>
+                  {%- when 'khaki' -%}
+                    <div class="swatch-color" style="background-color: #f0e68c;"></div>
+                  {%- else -%}
+                    <div class="swatch-color swatch-color--default" style="background-color: #e0e0e0;">
+                      <span class="swatch-text">{{ color | truncate: 3 }}</span>
+                    </div>
+                {%- endcase -%}
+              </div>
+              
+              <div class="category-swatches__info">
+                <span class="category-swatches__color-name">{{ color }}</span>
+                <span class="category-swatches__count">{{ product_handles.size }} 
+                  {%- if product_handles.size == 1 -%}item{%- else -%}items{%- endif -%}
+                </span>
+              </div>
+              
+              <div class="category-swatches__products">
+                {%- for handle in product_handles limit: 3 -%}
+                  {%- if handle != blank -%}
+                    {%- assign product = all_products[handle] -%}
+                    {%- if product != blank -%}
+                      <a href="{{ product.url }}" class="category-swatches__product-link">
+                        <img src="{{ product.featured_image | image_url: width: 60 }}" 
+                             alt="{{ product.title }}"
+                             width="60"
+                             height="60"
+                             loading="lazy">
+                      </a>
+                    {%- endif -%}
+                  {%- endif -%}
+                {%- endfor -%}
+                {%- if product_handles.size > 3 -%}
+                  <div class="category-swatches__more">
+                    +{{ product_handles.size | minus: 3 }}
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+      
+      {%- if section.settings.show_filter -%}
+        <div class="category-swatches__filter">
+          <button class="category-swatches__filter-btn active" data-filter="all">All Colors</button>
+          {%- for color in color_array -%}
+            {%- if color != blank -%}
+              <button class="category-swatches__filter-btn" data-filter="{{ color | handleize }}">
+                {{ color }}
+              </button>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const filterButtons = document.querySelectorAll('.category-swatches__filter-btn');
+  const swatchItems = document.querySelectorAll('.category-swatches__item');
+  
+  filterButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const filter = this.getAttribute('data-filter');
+      
+      // Update active button
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      this.classList.add('active');
+      
+      // Filter items
+      swatchItems.forEach(item => {
+        if (filter === 'all' || item.getAttribute('data-color') === filter) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Category Swatches",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Available Colors"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_filter",
+      "label": "Show color filter",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "swatch_size",
+      "min": 40,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Swatch size",
+      "default": 60
+    }
+  ],
+  "presets": [
+    {
+      "name": "Category Swatches"
+    }
+  ]
+}
+{% endschema %}
