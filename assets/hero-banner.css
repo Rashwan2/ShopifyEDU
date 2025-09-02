@@ -106,6 +106,8 @@
   border-radius: 8px;
   max-width: 600px;
   width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 /* Content Inline (without box) */
@@ -117,6 +119,7 @@
 /* Text Blocks */
 .hero-banner__text-block {
   margin-bottom: 1.5rem;
+  grid-column: 1 / -1;
 }
 
 .hero-banner__text-block:last-child {
@@ -160,10 +163,13 @@
   display: inline-block;
   margin-right: 1rem;
   margin-bottom: 0.5rem;
+  grid-column: 1/2;
+  justify-self: center;
 }
 
 .hero-banner__cta-block:last-child {
   margin-right: 0;
+  grid-column: 2/3;
 }
 
 /* CTA Buttons */
