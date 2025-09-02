@@ -187,6 +187,5 @@ For questions or issues with the hero banner section:
 
 ---
 
-**Created**: 2024  
 **Version**: 1.0  
 **Compatibility**: Shopify 2.0+ themes

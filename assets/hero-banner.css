@@ -9,6 +9,17 @@
   overflow: hidden;
 }
 
+/* Debug: Ensure CSS custom properties are working */
+.hero-banner {
+  /* Fallback values for debugging */
+  --text-color: var(--text-color, #ffffff);
+  --cta-border-color: var(--cta-border-color, #ffffff);
+  --cta-text-color: var(--cta-text-color, #ffffff);
+  --box-color: var(--box-color, #000000);
+  --box-opacity: var(--box-opacity, 0.8);
+  --overlay-opacity: var(--overlay-opacity, 0.5);
+}
+
 /* Media Container */
 .hero-banner__media {
   position: absolute;
@@ -168,7 +179,16 @@
   font-size: 0.9rem;
   transition: all 0.3s ease;
   border-radius: 4px;
-  background: transparent;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(2px);
+  min-width: 120px;
+  text-align: center;
+  /* Force visibility with fallback colors */
+  border-color: var(--cta-border-color, #ffffff) !important;
+  color: var(--cta-text-color, #ffffff) !important;
+  /* Ensure button is always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .hero-banner__cta:hover {
@@ -185,12 +205,23 @@
 /* CTA Styles */
 .hero-banner__cta--primary {
   /* Primary style uses default styling */
+  border-width: 2px;
+  font-weight: 700;
 }
 
 .hero-banner__cta--secondary {
   border-width: 1px;
   padding: 0.8rem 1.5rem;
   font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Ensure all CTA buttons are visible regardless of style */
+.hero-banner__cta--primary,
+.hero-banner__cta--secondary {
+  border-color: var(--cta-border-color, #ffffff) !important;
+  color: var(--cta-text-color, #ffffff) !important;
+  background-color: rgba(255, 255, 255, 0.15) !important;
 }
 
 /* Responsive Design */
